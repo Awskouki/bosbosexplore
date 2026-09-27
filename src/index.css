@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+/* ── OpenLayers core styles ── */
+@import "ol/ol.css";
+
+/* ── Custom properties ── */
+:root {
+  --bg-deep:    #0a0f1e;
+  --bg-panel:   #1a2332;
+  --bg-muted:   #1f2d40;
+  --accent-orange: #e8611a;
+  --accent-teal:   #00b4a6;
+  --text-primary:  #e8edf5;
+  --text-secondary:#8fa3bc;
+  --border-dim: rgba(255,255,255,0.08);
+  --border-subtle: rgba(255,255,255,0.14);
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* ── OpenLayers overrides ── */
+.ol-control button {
+  background-color: var(--bg-panel) !important;
+  color: var(--text-primary) !important;
+  border: 1px solid var(--border-dim) !important;
+  border-radius: 3px !important;
+}
+.ol-control button:hover {
+  background-color: var(--bg-muted) !important;
+  border-color: var(--border-subtle) !important;
+}
+.ol-zoom {
+  top: auto !important;
+  bottom: 2.5rem !important;
+  left: auto !important;
+  right: 1rem !important;
+}
+.ol-attribution {
+  background: rgba(10,15,30,0.75) !important;
+  color: #546a80 !important;
+  font-size: 10px !important;
+}
+.ol-attribution a { color: #00b4a6 !important; }
+.ol-scale-line {
+  background: rgba(10,15,30,0.75) !important;
+  border: 1px solid var(--border-dim) !important;
+  border-radius: 2px !important;
+  bottom: 1.5rem !important;
+  left: 1rem !important;
+}
+.ol-scale-line-inner {
+  color: #8fa3bc !important;
+  border-color: #8fa3bc !important;
+  font-size: 10px !important;
+  font-family: 'Inter', monospace !important;
+}
+
+/* ── Panel grid texture ── */
+.panel-grid {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+
+/* ── Map click ripple ── */
+@keyframes ripple {
+  0%   { transform: scale(0); opacity: 0.8; }
+  100% { transform: scale(3); opacity: 0; }
+}
+.map-ripple {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  margin: -12px 0 0 -12px;
+  border: 2px solid var(--accent-orange);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: ripple 0.6s ease-out forwards;
+}
